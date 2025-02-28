@@ -10,34 +10,45 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
       return db.query("DROP TABLE IF EXISTS comments, articles, users, topics")
     })
     .then(() => {
+      console.log("topics table created")
       return createTopics()
     })
     .then(() => {
+      console.log("users table created")
       return createUsers()
     })
     .then(() => {
+      console.log("articles table created")
       return createArticles()
     })
     .then(() => {
+      console.log("comments table created")
       return createComments()
     })
     .then(() => {
+      console.log("topics inserted")
       return insertTopics(topicData)
     })
     .then(() => {
+      console.log("users inserted")
       return insertUsers(userData)
     })
     .then(() => {
+      console.log("articles inserted")
       return insertArticles(articleData)
     })
     .then(() => {
+      console.log("comments inserted")
       return insertComments(commentData, articleData)
     })
     .then(() => {
-      return db.qeury('COMMIT')
+      return db.query('COMMIT')
     })
     .catch((error) => {
-      return
+      return db.query('ROLLBACK')
+      .then(() => {
+        console.log('rollback initiated: ', error)
+      })
     })
 
 }
