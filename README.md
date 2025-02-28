@@ -1,3 +1,10 @@
-# NC News Seeding
+## How to initialize
+- create two files called .env.development && .env.test and input the database required.
 
-- Instructions for this sprint can be found at https://l2c.northcoders.com/courses/be/seeding-nc-news
+```
+touch .env.development && touch .env.test
+```
+
+```
+echo 'PGDATABASE=nc_news' > .env.development && echo 'PGDATABASE=nc_news_test' > .env.test
+```
